@@ -54,3 +54,16 @@ int assign(char **argv, g_philos *philo, int argc)
         return (0);
     return(1);
 }
+
+void    threads_assign(g_philos philos, g_threads threads)
+{
+    int i;
+
+    i = 0;
+    while(i < philos.num_philos)
+    {
+        
+        threads.ph_id = i;
+        i++;
+    }
+}

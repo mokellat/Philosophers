@@ -17,6 +17,14 @@ typedef struct t_philosophers
     int must_eat;
 }   g_philos;
 
+
+typedef struct t_threads
+{
+    pthread_t   ph_th;
+    int         ph_id;
+}   g_threads;
+
+
 int assign(char **argv, g_philos *philo, int argc);
 int ft_atoi(const char *str);
 
