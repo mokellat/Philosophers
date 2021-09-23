@@ -22,10 +22,12 @@ typedef struct t_threads
 {
     pthread_t   ph_th;
     int         ph_id;
+    
 }   g_threads;
 
 
 int assign(char **argv, g_philos *philo, int argc);
 int ft_atoi(const char *str);
+int	threads_assign(g_philos philos, g_threads *threads);
 
 #endif

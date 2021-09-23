@@ -2,7 +2,7 @@ FLAGS = -Wall -Wextra -Werror
 DFLAGS = -fsanitize=address
 NAME = philo
 
-SRC = assign_fun.c utils.c
+SRC = assign_fun.c utils.c error.c
 	
 
 all : $(NAME)
