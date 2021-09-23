@@ -57,6 +57,13 @@ int assign(char **argv, g_philos *philo, int argc)
 
 void    *threads_exec(void   *arg)
 {
+    g_threads *thread;
+
+    thread = (g_threads*)arg;
+    if(thread->ph_id % 2 == 0)
+    {
+        
+    }
 	return (NULL);
 }
 
@@ -67,7 +74,9 @@ int	threads_assign(g_philos philos, g_threads *threads)
 	i = 0;
 	while(i < philos.num_philos)
 	{
-		threads[i].ph_id = i;
+		threads[i].ph_id = i + 1;
+        threads[i].lf_id = i % philos.num_philos;
+        threads[i].rf_id = (i + 1) % philos.num_philos;
 		if(pthread_create(threads[i].ph_th, NULL, threads_exec, NULL) != 0)
 			return (0);
 		i++;

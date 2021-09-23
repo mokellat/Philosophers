@@ -20,8 +20,12 @@ typedef struct t_philosophers
 
 typedef struct t_threads
 {
-    pthread_t   ph_th;
-    int         ph_id;
+    pthread_t       ph_th;
+    int             ph_id;
+    pthread_mutex_t left_fork;
+    pthread_mutex_t right_fork;
+    int             lf_id;
+    int             rf_id;
     
 }   g_threads;
 
