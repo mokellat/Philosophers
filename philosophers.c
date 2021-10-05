@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:16:44 by mokellat          #+#    #+#             */
-/*   Updated: 2021/09/22 15:52:29 by marvin           ###   ########.fr       */
+/*   Updated: 2021/09/23 12:25:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     
-    threads = malloc(sizeof(g_threads) * philo.num_philos);
     // Starting creating threads
+    mutexes_assign(philo);
     if(!threads_assign(philo, threads))
         ft_error(threads);
 }
