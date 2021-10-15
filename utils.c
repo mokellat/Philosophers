@@ -38,13 +38,20 @@ int		ft_atoi(const char *str)
 	return (result);
 }
 
-long int	time_fun()
+double	time_fun()
 {
 
-	long int ret;
+	double			ret;
+	struct timeval	current_time;
 
-	struct timeval current_time;
 	gettimeofday(&current_time, NULL);
 	ret = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
 	return (ret);
+}
+
+void	ft_error(void *pointer)
+{
+	free(pointer);
+	printf("A problem occured with threads or mutexes");
+	exit(EXIT_FAILURE);
 }

@@ -33,8 +33,10 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     
-    // Starting creating threads
-    mutexes_assign(philo);
+    // Starting creating threads and mutexes
+    threads = malloc(sizeof(g_threads) * philo.num_philos);
+    if(!mutexes_assign(philo))
+        ft_error(philo.forks);
     if(!threads_assign(philo, threads))
         ft_error(threads);
 }

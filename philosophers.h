@@ -17,7 +17,7 @@ typedef struct t_philosophers
 	int             time_to_sleep;
 	int             must_eat;
 	pthread_mutex_t *forks;
-	long int		time_start;
+	double			time_start;
 }   g_philos;
 
 
@@ -27,14 +27,14 @@ typedef struct t_threads
 	int             ph_id;
 	int             lf_id;
 	int             rf_id;
-	
 }   g_threads;
 
 
 int     	assign(char **argv, g_philos *philo, int argc);
 int     	ft_atoi(const char *str);
 int	    	threads_assign(g_philos philos, g_threads *threads);
-void    	mutexes_assign(g_philos philos);
-long int	time_fun();
+int	    	mutexes_assign(g_philos philos);
+double		time_fun();
+void		ft_error(void *pointer);
 
 #endif

@@ -25,7 +25,6 @@ int	threads_assign(g_philos philos, g_threads *threads)
 	int i;
 
 	i = 0;
-    threads = malloc(sizeof(g_threads) * philos.num_philos);
 	while(i < philos.num_philos)
 	{
 		threads[i].ph_id = i + 1;
