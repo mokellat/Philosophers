@@ -29,12 +29,16 @@ typedef struct t_threads
 	int             rf_id;
 }   g_threads;
 
-
 int     	assign(char **argv, g_philos *philo, int argc);
 int     	ft_atoi(const char *str);
 int	    	threads_assign(g_philos philos, g_threads *threads);
 int	    	mutexes_assign(g_philos philos);
 double		time_fun();
 void		ft_error(void *pointer);
+g_philos	*static_philo(void);
+void		philo_fork_print(g_threads *th);
+void    	philo_eating_print(g_threads *th);
+void    	philo_sleep_print(g_threads *th);
+void    	philo_thinking_print(g_threads *th);
 
 #endif

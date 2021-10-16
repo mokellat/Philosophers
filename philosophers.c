@@ -34,9 +34,16 @@ int main(int argc, char **argv)
     }
     
     // Starting creating threads and mutexes
+
     threads = malloc(sizeof(g_threads) * philo.num_philos);
     if(!mutexes_assign(philo))
-        ft_error(philo.forks);
+    {
+        printf("Error: mutex are uncorrect");
+        exit(EXIT_FAILURE);
+    }
     if(!threads_assign(philo, threads))
-        ft_error(threads);
+    {
+        printf("Error: threads are uncorrect");
+        exit(EXIT_FAILURE);
+    }
 }

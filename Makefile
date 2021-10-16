@@ -2,13 +2,13 @@ FLAGS = -Wall -Wextra -Werror
 DFLAGS = -fsanitize=address
 NAME = philo
 
-SRC = assign_fun.c utils.c mutex.c thread.c 
+SRC = assign_fun.c utils.c mutex.c thread.c utils_.c
 	
 
 all : $(NAME)
 
 $(NAME): $(SRC) philosophers.c
-	gcc $(FLAGS) -o $(NAME) philosophers.c $(SRC) -g -lpthread
+	gcc -o $(NAME) philosophers.c $(SRC) -g -lpthread $(DFLAGS)
 
 bonus:
 

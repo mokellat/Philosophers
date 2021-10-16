@@ -55,3 +55,10 @@ void	ft_error(void *pointer)
 	printf("A problem occured with threads or mutexes");
 	exit(EXIT_FAILURE);
 }
+
+g_philos	*static_philo(void)
+{
+	static g_philos philos;
+
+	return (&philos);
+}

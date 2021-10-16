@@ -14,9 +14,24 @@
 
 void    *threads_exec(void   *arg)
 {
-    g_threads *thread;
+    g_threads	*thread;
+	g_philos	*philos;
 
-    thread = (g_threads*)arg;
+	while(1)
+	{
+		thread = (g_threads*)arg;
+		pthread_mutex_lock(&philos->forks[thread->lf_id]);
+		philo_fork_print(thread);
+		pthread_mutex_lock(&philos->forks[thread->rf_id]);
+		philo_fork_print(thread);
+		philo_eating_print(thread);
+		usleep(philos->time_to_eat);
+		pthread_mutex_unlock(&philos->forks[thread->lf_id]);
+		pthread_mutex_unlock(&philos->forks[thread->rf_id]);
+		philo_sleep_print(thread);
+		usleep(philos->time_to_sleep);
+		philo_thinking_print(thread);
+	}
     return (NULL);
 }
 
@@ -30,8 +45,9 @@ int	threads_assign(g_philos philos, g_threads *threads)
 		threads[i].ph_id = i + 1;
         threads[i].lf_id = i % philos.num_philos;
         threads[i].rf_id = (i + 1) % philos.num_philos;
-		if(pthread_create(&threads[i].ph_th, NULL, threads_exec, NULL) != 0)
+		if(pthread_create(&threads[i].ph_th, NULL, threads_exec, threads) != 0)
 			return (0);
+		usleep(100);
 		i++;
 	}
 	return (1);
