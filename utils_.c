@@ -14,20 +14,20 @@
 
 void    philo_fork_print(g_threads *th)
 {
-    printf("philo %d is taken a fork", th->ph_id);
+    printf("philo %d is taken a fork\n", th->ph_id);
 }
 
 void    philo_eating_print(g_threads *th)
 {
-    printf("philo %d is eating", th->ph_id);
+    printf("philo %d is eating\n", th->ph_id);
 }
 
 void    philo_sleep_print(g_threads *th)
 {
-    printf("philo %d is sleeping", th->ph_id);
+    printf("philo %d is sleeping\n", th->ph_id);
 }
 
 void    philo_thinking_print(g_threads *th)
 {
-    printf("philo %d is thinking", th->ph_id);
+    printf("philo %d is thinking\n", th->ph_id);
 }
