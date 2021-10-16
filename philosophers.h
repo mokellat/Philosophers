@@ -17,7 +17,7 @@ typedef struct t_philosophers
 	int             time_to_sleep;
 	int             must_eat;
 	pthread_mutex_t *forks;
-	double			time_start;
+	double			*eat_start;
 }   g_philos;
 
 
