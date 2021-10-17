@@ -24,8 +24,8 @@ void    *threads_exec(void   *arg)
 		// philo_fork_print(thread);
 		pthread_mutex_lock(&philos->forks[thread->rf_id]);
 		// philo_fork_print(thread);
-		philos->eat_start[thread->ph_id - 1] = time_fun();
-		printf("|im here %f|\n", philos->eat_start[thread->ph_id - 1]);
+		thread->eat_start = time_fun();
+		printf("|im here %f|\n", thread->eat_start);
 		// philo_eating_print(thread);
 		usleep(philos->time_to_eat);
 		pthread_mutex_unlock(&philos->forks[thread->lf_id]);
@@ -47,6 +47,8 @@ int	threads_assign(g_philos philos, g_threads *threads)
 		threads[i].ph_id = i + 1;
         threads[i].lf_id = i % philos.num_philos;
         threads[i].rf_id = (i + 1) % philos.num_philos;
+		// printf("%d \n", threads[i].lf_id);
+		// printf("%d \n", threads[i].rf_id);
 		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
 			return (0);
 		usleep(100);

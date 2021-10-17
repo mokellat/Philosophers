@@ -49,7 +49,7 @@ int assign(char **argv, g_philos *philo, int argc)
 		if(philo->num_philos <= 0 || philo->time_to_die <= 0
 		|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
 			return(0);
-		philo->eat_start = malloc(sizeof(double) * philo->num_philos);
+		// philo->eat_start = malloc(sizeof(double) * philo->num_philos);
 	}
 	else
 		return (0);
