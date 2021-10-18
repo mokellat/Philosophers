@@ -12,15 +12,15 @@
 
 #include "philosophers.h"
 
-int	mutexes_assign(g_philos philos)
+int	mutexes_assign(g_summary *sum)
 {
 	int i;
 	
 	i = 0;
-	philos.forks = malloc(philos.num_forks * sizeof(pthread_mutex_t *));
-	while(i < philos.num_forks)
+	sum->ph.forks = malloc(sum->ph.num_forks * sizeof(pthread_mutex_t *));
+	while(i < sum->ph.num_forks)
 	{
-		if (pthread_mutex_init(&philos.forks[i], NULL) != 0)
+		if (pthread_mutex_init(&sum->ph.forks[i], NULL) != 0)
 			return (0);
 		i++;
 	}

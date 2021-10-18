@@ -28,19 +28,25 @@ typedef struct t_threads
 	int             ph_id;
 	int             lf_id;
 	int             rf_id;
-	double			eat_start;
+	long int		eat_start;
 }   g_threads;
 
-int     	assign(char **argv, g_philos *philo, int argc);
+typedef struct t_summary
+{
+	g_threads	*th;
+	g_philos	ph;
+}   g_summary;
+
+int     	assign(char **argv, g_summary *sum, int argc);
 int     	ft_atoi(const char *str);
-int	    	threads_assign(g_philos philos, g_threads *threads);
-int	    	mutexes_assign(g_philos philos);
-double		time_fun();
+int	    	threads_assign(g_summary *sum);
+int	    	mutexes_assign(g_summary *sum);
+long int	time_fun();
 void		ft_error(void *pointer);
 g_philos	*static_philo(void);
-void		philo_fork_print(g_threads *th);
-void    	philo_eating_print(g_threads *th);
-void    	philo_sleep_print(g_threads *th);
-void    	philo_thinking_print(g_threads *th);
+void		philo_fork_print(g_summary *sum);
+void    	philo_eating_print(g_summary *sum);
+void    	philo_sleep_print(g_summary *sum);
+void    	philo_thinking_print(g_summary *sum);
 
 #endif

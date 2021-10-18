@@ -15,41 +15,45 @@
 void    *threads_exec(void   *arg)
 {
     g_threads	*thread;
-	g_philos	*philos;
+	g_summary	*sum;
 
-	while(1) // cause every philosophers needs to eat each till is there a condition that stops hime
+	while(1)
 	{
+		// sum = (g_summary*)arg;
 		thread = (g_threads*)arg;
-		pthread_mutex_lock(&philos->forks[thread->lf_id]);
-		// philo_fork_print(thread);
-		pthread_mutex_lock(&philos->forks[thread->rf_id]);
-		// philo_fork_print(thread);
-		thread->eat_start = time_fun();
-		printf("|im here %f|\n", thread->eat_start);
-		// philo_eating_print(thread);
-		usleep(philos->time_to_eat);
-		pthread_mutex_unlock(&philos->forks[thread->lf_id]);
-		pthread_mutex_unlock(&philos->forks[thread->rf_id]);
-		// philo_sleep_print(thread);
-		usleep(philos->time_to_sleep);
-		// philo_thinking_print(thread);
+		// printf("%d \n", sum->th->lf_id);
+		// printf("%d \n", sum->th->rf_id);
+		pthread_mutex_lock(&sum->ph.forks[sum->th->lf_id]);
+		// philo_fork_print(sum);
+		pthread_mutex_lock(&sum->ph.forks[sum->th->rf_id]);
+		// philo_fork_print(sum);
+		sum->th->eat_start = time_fun();
+		// printf("|im here %ld|\n", thread->eat_start);
+		// philo_eating_prin);
+		// printf("time %d\n",sum->ph.time_to_eat);
+		usleep(sum->ph.time_to_eat);
+		pthread_mutex_unlock(&sum->ph.forks[sum->th->lf_id]);
+		pthread_mutex_unlock(&sum->ph.forks[sum->th->rf_id]);
+		// philo_sleep_print(sum);
+		usleep(sum->ph.time_to_sleep);
+		// philo_thinking_print(sum);
 	}
     return (NULL);
 }
 
-int	threads_assign(g_philos philos, g_threads *threads)
+int	threads_assign(g_summary *sum)
 {
 	int i;
 
 	i = 0;
-	while(i < philos.num_philos)
+	while(i < sum->ph.num_philos)
 	{
-		threads[i].ph_id = i + 1;
-        threads[i].lf_id = i % philos.num_philos;
-        threads[i].rf_id = (i + 1) % philos.num_philos;
-		// printf("%d \n", threads[i].lf_id);
-		// printf("%d \n", threads[i].rf_id);
-		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
+		sum->th[i].ph_id = i + 1;
+        sum->th[i].lf_id = i % sum->ph.num_philos;
+        sum->th[i].rf_id = (i + 1) % sum->ph.num_philos;
+		// printf("%d \n", sum->th[i].lf_id);
+		// printf("%d \n", sum->th[i].rf_id);
+		if (pthread_create(&sum->th[i].ph_th, NULL, threads_exec, &sum->th[i]) != 0)
 			return (0);
 		usleep(100);
 		i++;
