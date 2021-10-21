@@ -8,7 +8,7 @@ SRC = assign_fun.c utils.c mutex.c thread.c utils_.c supervisor.c
 all : $(NAME)
 
 $(NAME): $(SRC) philosophers.c
-	gcc -o $(NAME) philosophers.c $(SRC) -g -lpthread $(DFLAGS)
+	gcc -o $(NAME) philosophers.c $(SRC) -g -lpthread
 
 bonus:
 
