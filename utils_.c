@@ -31,3 +31,8 @@ void    philo_thinking_print(g_threads *th)
 {
     printf("philo %d is thinking\n", th->ph_id);
 }
+
+void    philo_dies_print(g_threads *th)
+{
+    printf("philo %d died\n", th->ph_id);
+}

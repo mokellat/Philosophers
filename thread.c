@@ -17,6 +17,7 @@ void    *threads_exec(void   *arg)
     g_threads	*thread;
 	g_philos	*philos;
 
+	thread->eat_num = 0;
 	while(1) // cause every philosophers needs to eat each till is there a condition that stops hime
 	{
 		thread = (g_threads*)arg;
@@ -25,6 +26,7 @@ void    *threads_exec(void   *arg)
 		philo_fork_print(thread);
 		pthread_mutex_lock(&philos->forks[thread->rf_id]);
 		philo_fork_print(thread);
+		thread->eat_num++;
 		philo_eating_print(thread);
 		thread->eat_start = time_fun();
 		usleep(philos->time_to_eat);
@@ -47,13 +49,12 @@ int	threads_assign(g_philos *philos, g_threads *threads)
 		threads[i].ph_id = i + 1;
         threads[i].lf_id = i % philos->num_philos;
         threads[i].rf_id = (i + 1) % philos->num_philos;
-		// printf("|%d| \n", threads[i].lf_id);
-		// printf("|%d| \n", threads[i].rf_id);
-		// printf("-----------------------\n");
 		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
 			return (0);
 		usleep(100);
 		i++;
 	}
+	if(!supervisor(threads))
+		return (1);
 	return (1);
 }

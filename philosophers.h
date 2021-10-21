@@ -28,6 +28,7 @@ typedef struct t_threads
 	int             lf_id;
 	int             rf_id;
 	double			eat_start;
+	int				eat_num;
 }   g_threads;
 
 int     	assign(char **argv, g_philos *philo, int argc);
@@ -41,5 +42,7 @@ void		philo_fork_print(g_threads *th);
 void    	philo_eating_print(g_threads *th);
 void    	philo_sleep_print(g_threads *th);
 void    	philo_thinking_print(g_threads *th);
+void		philo_dies_print(g_threads *th);
+int			supervisor(g_threads *threads);
 
 #endif
