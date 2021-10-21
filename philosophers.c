@@ -14,9 +14,8 @@
 
 int main(int argc, char **argv)
 {
-    // g_philos    philo;
-    // g_threads   *threads;
-    g_summary   sum;
+    g_philos    *philo;
+    g_threads   *threads;
     
     // checking the args
     
@@ -25,10 +24,9 @@ int main(int argc, char **argv)
         printf("Error: Arguments are invalid");
         exit(EXIT_FAILURE);
     }
-
+    philo = static_philo();
     // assigning the general data
-        
-    if(!assign(argv, &sum, argc))
+    if(!assign(argv, philo, argc))
     {
         printf("Error: Arguments are invalid");
         exit(EXIT_FAILURE);
@@ -36,13 +34,13 @@ int main(int argc, char **argv)
     
     // Starting creating threads and mutexes
 
-    sum.th = malloc(sizeof(g_threads) * sum.ph.num_philos);
-    if(!mutexes_assign(&sum))
+    threads = malloc(sizeof(g_threads) * philo->num_philos);
+    if(!mutexes_assign(philo))
     {
         printf("Error: mutex are uncorrect");
         exit(EXIT_FAILURE);
     }
-    if(!threads_assign(&sum))
+    if(!threads_assign(philo, threads))
     {
         printf("Error: threads are uncorrect");
         exit(EXIT_FAILURE);

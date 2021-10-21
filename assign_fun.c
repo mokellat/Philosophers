@@ -33,21 +33,21 @@ int is_digit(char **argv)
 	return (1);
 }
 
-int assign(char **argv, g_summary *sum, int argc)
+int assign(char **argv, g_philos *philo, int argc)
 {
 	if(is_digit(argv))
 	{
-		sum->ph.num_philos = ft_atoi(argv[1]);
-		sum->ph.num_forks = ft_atoi(argv[1]);
-		sum->ph.time_to_die = ft_atoi(argv[2]);
-		sum->ph.time_to_eat = ft_atoi(argv[3]);
-		sum->ph.time_to_sleep = ft_atoi(argv[4]);
+		philo->num_philos = ft_atoi(argv[1]);
+		philo->num_forks = ft_atoi(argv[1]);
+		philo->time_to_die = ft_atoi(argv[2]);
+		philo->time_to_eat = ft_atoi(argv[3]);
+		philo->time_to_sleep = ft_atoi(argv[4]);
 		if(argc == 6)
-			sum->ph.must_eat = ft_atoi(argv[5]);
+			philo->must_eat = ft_atoi(argv[5]);
 		else
-			sum->ph.must_eat = -1;
-		if(sum->ph.num_philos <= 0 || sum->ph.time_to_die <= 0
-		|| sum->ph.time_to_eat <= 0 || sum->ph.time_to_sleep <= 0)
+			philo->must_eat = -1;
+		if(philo->num_philos <= 0 || philo->time_to_die <= 0
+		|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
 			return(0);
 		// philo->eat_start = malloc(sizeof(double) * philo->num_philos);
 	}

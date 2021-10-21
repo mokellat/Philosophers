@@ -38,10 +38,10 @@ int		ft_atoi(const char *str)
 	return (result);
 }
 
-long int	time_fun()
+double	time_fun()
 {
 
-	long int		ret;
+	double			ret;
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
