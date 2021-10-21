@@ -28,7 +28,7 @@ int supervisor(g_threads *threads)
                 philo_dies_print(threads);
                 return (0);
             }
-            if(philo->must_eat > 0 && (threads[i].eat_start * philo->num_philos) > philo->must_eat)
+            if(philo->must_eat > 0 && (philo->num_eat * philo->num_philos) > philo->must_eat)
                 return (0);
             i++;
         }
