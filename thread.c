@@ -28,11 +28,11 @@ void    *threads_exec(void   *arg)
 		thread->num_eat++;
 		philo_eating_print(thread);
 		thread->eat_start = time_fun();
-		usleep(philos->time_to_eat);
+		ft_usleep(philos->time_to_eat);
 		pthread_mutex_unlock(&philos->forks[thread->rf_id]);
 		pthread_mutex_unlock(&philos->forks[thread->lf_id]);
 		philo_sleep_print(thread);
-		usleep(philos->time_to_sleep);
+		ft_usleep(philos->time_to_sleep);
 		philo_thinking_print(thread);
 	}
     return (NULL);
@@ -50,9 +50,10 @@ int	threads_assign(g_philos *philos, g_threads *threads)
         threads[i].rf_id = (i + 1) % philos->num_philos;
 		threads[i].num_eat = 0;
 		threads[i].eat_start = time_fun();
+		// printf("%ld ")
 		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
 			return (0);
-		usleep(100);
+		ft_usleep(100);
 		i++;
 	}
 	if(!supervisor(threads))

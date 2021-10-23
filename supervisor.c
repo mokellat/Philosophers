@@ -23,14 +23,15 @@ int supervisor(g_threads *threads)
     {
         i = 0;
         var = 0;
-        while(i < philo->num_philos)
+        while (i < philo->num_philos)
         {
-            if(time_fun() - threads[i].eat_start >= (philo->time_to_die * 1000))
+            // printf(" [%ld] %ld [%ld]\n", time_fun() , threads[i].eat_start , (philo->time_to_die ));
+            if (time_fun() - threads[i].eat_start > (philo->time_to_die * 1000))
             {
                 philo_dies_print(threads);
                 return (0);
             }
-            if(philo->must_eat > 0 && (threads[i].num_eat  >= philo->must_eat))
+            if (philo->must_eat > 0 && (threads[i].num_eat >= philo->must_eat))
                 var++;
             i++;
         }

@@ -38,14 +38,14 @@ int		ft_atoi(const char *str)
 	return (result);
 }
 
-double	time_fun()
+long long	time_fun()
 {
 
-	double			ret;
+	long long			ret;
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	ret = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	ret = (current_time.tv_sec * 1000000) + (current_time.tv_usec);
 	return (ret);
 }
 
@@ -61,4 +61,16 @@ g_philos	*static_philo(void)
 	static g_philos philos;
 
 	return (&philos);
+}
+
+void	ft_usleep(long long time)
+{
+	long long	r;
+	long long	mic;
+
+	mic = time_fun();
+	r = (time * 1000) - 1000;
+	usleep(r);
+	while ((time_fun() - mic) <= ((time * 1000)))
+		;
 }
