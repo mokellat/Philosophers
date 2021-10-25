@@ -29,6 +29,7 @@ typedef struct t_threads
 	int             rf_id;
 	long long			eat_start;
 	int				num_eat;
+	long long 		dif;
 	g_philos 		*data;
 }   g_threads;
 

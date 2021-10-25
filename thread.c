@@ -21,6 +21,8 @@ void    *threads_exec(void   *arg)
 	{
 		thread = (g_threads*)arg;
 		philos = static_philo();
+		if(thread->ph_id % 2 == 0)
+			usleep(100);
 		pthread_mutex_lock(&philos->forks[thread->lf_id]);
 		philo_fork_print(thread);
 		pthread_mutex_lock(&philos->forks[thread->rf_id]);
@@ -43,6 +45,7 @@ int	threads_assign(g_philos *philos, g_threads *threads)
 	int i;
 
 	i = 0;
+	long long start = time_fun();
 	while(i < philos->num_philos)
 	{
 		threads[i].ph_id = i + 1;
@@ -50,10 +53,9 @@ int	threads_assign(g_philos *philos, g_threads *threads)
         threads[i].rf_id = (i + 1) % philos->num_philos;
 		threads[i].num_eat = 0;
 		threads[i].eat_start = time_fun();
-		// printf("%ld ")
+		threads[i].dif = time_fun();
 		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
 			return (0);
-		ft_usleep(100);
 		i++;
 	}
 	if(!supervisor(threads))

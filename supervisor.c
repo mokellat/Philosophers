@@ -25,7 +25,6 @@ int supervisor(g_threads *threads)
         var = 0;
         while (i < philo->num_philos)
         {
-            // printf(" [%ld] %ld [%ld]\n", time_fun() , threads[i].eat_start , (philo->time_to_die ));
             if (time_fun() - threads[i].eat_start > (philo->time_to_die * 1000))
             {
                 philo_dies_print(threads);
