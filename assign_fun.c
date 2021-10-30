@@ -12,19 +12,19 @@
 
 #include "philosophers.h"
 
-int is_digit(char **argv)
+int	is_digit(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = 0;
-	while(argv[i])
+	while (argv[i])
 	{
 		j = 0;
-		while(argv[i][j])
+		while (argv[i][j])
 		{
-			if(argv[i][j] < '0' || argv[i][j] > '9')
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (0);
 			j++;
 		}
@@ -33,25 +33,24 @@ int is_digit(char **argv)
 	return (1);
 }
 
-int assign(char **argv, g_philos *philo, int argc)
+int	assign(char **argv, t_philos *philo, int argc)
 {
-	if(is_digit(argv))
+	if (is_digit(argv))
 	{
 		philo->num_philos = ft_atoi(argv[1]);
 		philo->num_forks = ft_atoi(argv[1]);
 		philo->time_to_die = ft_atoi(argv[2]);
 		philo->time_to_eat = ft_atoi(argv[3]);
 		philo->time_to_sleep = ft_atoi(argv[4]);
-		if(argc == 6)
+		if (argc == 6)
 			philo->must_eat = ft_atoi(argv[5]);
 		else
 			philo->must_eat = -1;
-		if(philo->num_philos <= 0 || philo->time_to_die <= 0
-		|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
-			return(0);
-		// philo->eat_start = malloc(sizeof(double) * philo->num_philos);
+		if (philo->num_philos <= 0 || philo->time_to_die <= 0
+			|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
+			return (0);
 	}
 	else
 		return (0);
-	return(1);
+	return (1);
 }

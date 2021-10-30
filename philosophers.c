@@ -12,37 +12,31 @@
 
 #include "philosophers.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    g_philos    *philo;
-    g_threads   *threads;
-    
-    // checking the args
-    
-    if(argc < 5 || argc > 6)
-    {
-        printf("Error: Arguments are invalid");
-        exit(EXIT_FAILURE);
-    }
-    philo = static_philo();
-    // assigning the general data
-    if(!assign(argv, philo, argc))
-    {
-        printf("Error: Arguments are invalid");
-        exit(EXIT_FAILURE);
-    }
-    
-    // Starting creating threads and mutexes
+	t_philos	*philo;
+	t_threads	*threads;
 
-    threads = malloc(sizeof(g_threads) * philo->num_philos);
-    if(!mutexes_assign(philo))
-    {
-        printf("Error: mutex are uncorrect");
-        exit(EXIT_FAILURE);
-    }
-    if(!threads_assign(philo, threads))
-    {
-        printf("Error: threads are uncorrect");
-        exit(EXIT_FAILURE);
-    }
+	if (argc < 5 || argc > 6)
+	{
+		printf("Error: Arguments are invalid");
+		exit(EXIT_FAILURE);
+	}
+	philo = static_philo();
+	if (!assign(argv, philo, argc))
+	{
+		printf("Error: Arguments are invalid");
+		exit(EXIT_FAILURE);
+	}
+	threads = malloc(sizeof(t_threads) * philo->num_philos);
+	if (!mutexes_assign(philo))
+	{
+		printf("Error: mutex are uncorrect");
+		exit(EXIT_FAILURE);
+	}
+	if (!threads_assign(philo, threads))
+	{
+		printf("Error: threads are uncorrect");
+		exit(EXIT_FAILURE);
+	}
 }

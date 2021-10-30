@@ -56,9 +56,9 @@ void	ft_error(void *pointer)
 	exit(EXIT_FAILURE);
 }
 
-g_philos	*static_philo(void)
+t_philos	*static_philo(void)
 {
-	static g_philos philos;
+	static t_philos philos;
 
 	return (&philos);
 }

@@ -12,16 +12,16 @@
 
 #include "philosophers.h"
 
-void    *threads_exec(void   *arg)
+void	*threads_exec(void   *arg)
 {
-    g_threads	*thread;
-	g_philos	*philos;
+	t_threads	*thread;
+	t_philos	*philos;
 
-	while(1) // cause every philosophers needs to eat each till is there a condition that stops hime
+	while (1)
 	{
-		thread = (g_threads*)arg;
+		thread = (t_threads*)arg;
 		philos = static_philo();
-		if(thread->ph_id % 2 == 0)
+		if (thread->ph_id % 2 == 0)
 			usleep(100);
 		pthread_mutex_lock(&philos->forks[thread->lf_id]);
 		philo_fork_print(thread);
@@ -37,20 +37,20 @@ void    *threads_exec(void   *arg)
 		ft_usleep(philos->time_to_sleep);
 		philo_thinking_print(thread);
 	}
-    return (NULL);
+	return (NULL);
 }
 
-int	threads_assign(g_philos *philos, g_threads *threads)
+int	threads_assign(t_philos *philos, t_threads *threads)
 {
 	int i;
 
 	i = 0;
 	long long start = time_fun();
-	while(i < philos->num_philos)
+	while (i < philos->num_philos)
 	{
 		threads[i].ph_id = i + 1;
-        threads[i].lf_id = i % philos->num_philos;
-        threads[i].rf_id = (i + 1) % philos->num_philos;
+		threads[i].lf_id = i % philos->num_philos;
+		threads[i].rf_id = (i + 1) % philos->num_philos;
 		threads[i].num_eat = 0;
 		threads[i].eat_start = time_fun();
 		threads[i].dif = time_fun();
@@ -58,7 +58,7 @@ int	threads_assign(g_philos *philos, g_threads *threads)
 			return (0);
 		i++;
 	}
-	if(!supervisor(threads))
+	if (!supervisor(threads))
 		return (1);
 	return (1);
 }
