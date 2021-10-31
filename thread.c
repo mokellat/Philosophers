@@ -28,7 +28,7 @@ void	*threads_exec(void *arg)
 		pthread_mutex_lock(&philos->forks[thread->rf_id]);
 		philo_fork_print(thread);
 		thread->num_eat++;
-		philo_eating_print(thread);
+		philo_eating_print(thread, philos);
 		thread->eat_start = time_fun();
 		ft_usleep(philos->time_to_eat);
 		pthread_mutex_unlock(&philos->forks[thread->rf_id]);

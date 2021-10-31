@@ -51,10 +51,10 @@ long long	time_fun(void);
 void		ft_error(void *pointer);
 t_philos	*static_philo(void);
 void		philo_fork_print(t_threads *th);
-void		philo_eating_print(t_threads *th);
+void		philo_eating_print(t_threads *th, t_philos *philo);
 void		philo_sleep_print(t_threads *th);
 void		philo_thinking_print(t_threads *th);
-void		philo_dies_print(t_threads *th);
+void		philo_dies_print(t_threads *th, t_philos *ph);
 int			supervisor(t_threads *threads);
 void		ft_usleep(long long time);
 #endif

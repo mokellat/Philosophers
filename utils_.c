@@ -18,9 +18,11 @@ void	philo_fork_print(t_threads *th)
 		th->ph_id);
 }
 
-void	philo_eating_print(t_threads *th)
+void	philo_eating_print(t_threads *th, t_philos *philo)
 {
+	pthread_mutex_lock(&philo->lock);
 	printf("%d %d is eating\n", (int)((time_fun() - th->dif) / 1000), th->ph_id);
+	pthread_mutex_unlock(&philo->lock);
 }
 
 void	philo_sleep_print(t_threads *th)
@@ -35,8 +37,10 @@ void	philo_thinking_print(t_threads *th)
 		th->ph_id);
 }
 
-void	philo_dies_print(t_threads *th)
+void	philo_dies_print(t_threads *th, t_philos *philo)
 {
+	pthread_mutex_lock(&philo->lock);
 	printf("%d %d died\n", (int)((time_fun() - th->eat_start) / 1000),
 		th->ph_id);
+	pthread_mutex_unlock(&philo->lock);
 }
