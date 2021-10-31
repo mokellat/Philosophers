@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		sign;
 	int		result;
@@ -21,8 +21,8 @@ int		ft_atoi(const char *str)
 	result = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] && (str[i] == '\f' || str[i] == '\t' || str[i] == ' ' ||
-			str[i] == '\n' || str[i] == '\r' || str[i] == '\v'))
+	while (str[i] && (str[i] == '\f' || str[i] == '\t' || str[i] == ' '
+			|| str[i] == '\n' || str[i] == '\r' || str[i] == '\v'))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -38,10 +38,9 @@ int		ft_atoi(const char *str)
 	return (result);
 }
 
-long long	time_fun()
+long long	time_fun(void)
 {
-
-	long long			ret;
+	long long		ret;
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
@@ -58,7 +57,7 @@ void	ft_error(void *pointer)
 
 t_philos	*static_philo(void)
 {
-	static t_philos philos;
+	static t_philos	philos;
 
 	return (&philos);
 }

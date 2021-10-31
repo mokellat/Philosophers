@@ -12,14 +12,14 @@
 
 #include "philosophers.h"
 
-void	*threads_exec(void   *arg)
+void	*threads_exec(void *arg)
 {
 	t_threads	*thread;
 	t_philos	*philos;
 
 	while (1)
 	{
-		thread = (t_threads*)arg;
+		thread = (t_threads *)arg;
 		philos = static_philo();
 		if (thread->ph_id % 2 == 0)
 			usleep(100);
@@ -42,10 +42,11 @@ void	*threads_exec(void   *arg)
 
 int	threads_assign(t_philos *philos, t_threads *threads)
 {
-	int i;
+	int			i;
+	long long	start ;
 
 	i = 0;
-	long long start = time_fun();
+	start = time_fun();
 	while (i < philos->num_philos)
 	{
 		threads[i].ph_id = i + 1;
@@ -54,7 +55,8 @@ int	threads_assign(t_philos *philos, t_threads *threads)
 		threads[i].num_eat = 0;
 		threads[i].eat_start = time_fun();
 		threads[i].dif = time_fun();
-		if (pthread_create(&threads[i].ph_th, NULL, threads_exec, &threads[i]) != 0)
+		if (pthread_create(&threads[i].ph_th, NULL,
+				threads_exec, &threads[i]) != 0)
 			return (0);
 		i++;
 	}
