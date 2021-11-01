@@ -42,5 +42,4 @@ void	philo_dies_print(t_threads *th, t_philos *philo)
 	pthread_mutex_lock(&philo->lock);
 	printf("%d %d died\n", (int)((time_fun() - th->eat_start) / 1000),
 		th->ph_id);
-	pthread_mutex_unlock(&philo->lock);
 }

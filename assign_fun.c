@@ -46,9 +46,6 @@ int	assign(char **argv, t_philos *philo, int argc)
 			philo->must_eat = ft_atoi(argv[5]);
 		else
 			philo->must_eat = -1;
-		if (philo->num_philos < 0 || philo->time_to_die <= 0
-			|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
-			return (0);
 	}
 	else
 		return (0);

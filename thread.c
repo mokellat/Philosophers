@@ -27,9 +27,10 @@ void	*threads_exec(void *arg)
 		philo_fork_print(thread);
 		pthread_mutex_lock(&philos->forks[thread->rf_id]);
 		philo_fork_print(thread);
+		thread->check = 1;
 		thread->num_eat++;
-		philo_eating_print(thread, philos);
 		thread->eat_start = time_fun();
+		philo_eating_print(thread, philos);
 		ft_usleep(philos->time_to_eat);
 		pthread_mutex_unlock(&philos->forks[thread->rf_id]);
 		pthread_mutex_unlock(&philos->forks[thread->lf_id]);
@@ -55,6 +56,7 @@ int	threads_assign(t_philos *philos, t_threads *threads)
 		threads[i].num_eat = 0;
 		threads[i].eat_start = time_fun();
 		threads[i].dif = time_fun();
+		threads[i].check = 0;
 		if (pthread_create(&threads[i].ph_th, NULL,
 				threads_exec, &threads[i]) != 0)
 			return (0);

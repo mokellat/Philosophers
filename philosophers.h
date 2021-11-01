@@ -41,6 +41,7 @@ typedef struct t_threads
 	long long		eat_start;
 	int				num_eat;
 	long long		dif;
+	int				check;
 }	t_threads;
 
 int			assign(char **argv, t_philos *philo, int argc);

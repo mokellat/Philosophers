@@ -25,9 +25,10 @@ int	supervisor(t_threads *threads)
 		var = 0;
 		while (i < philo->num_philos)
 		{
-			if (time_fun() - threads[i].eat_start > (philo->time_to_die * 1000))
+			if (time_fun() - threads[i].eat_start > (philo->time_to_die * 1000)
+				&& threads[i].check == 0)
 			{
-				philo_dies_print(threads, philo);
+				philo_dies_print(&threads[i], philo);
 				return (0);
 			}
 			if (philo->must_eat > 0 && (threads[i].num_eat >= philo->must_eat))

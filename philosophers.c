@@ -35,7 +35,8 @@ int	main(int argc, char **argv)
 		printf("Error: Arguments are invalid");
 		exit(EXIT_FAILURE);
 	}
-	if(philo->must_eat == 0 || philo->num_philos == 0)
+	if (philo->num_philos <= 0 || philo->time_to_die <= 0
+		|| philo->time_to_eat <= 0 || philo->time_to_sleep <= 0)
 		return (0);
 	threads = malloc(sizeof(t_threads) * philo->num_philos);
 	if (!mutexes_assign(philo))
